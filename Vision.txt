@@ -1,0 +1,30 @@
+1.1 Business Opportunity (Extracted from Overview Document)
+[Assume the Background has already been established in the Overview]
+HKU wishes to return to F2F teaching soon and wishes to do so safely. 
+To minimize the chance of the SARSCoV-2 virus spreading on campus, HKU’s COVID Task Force must be able to identify HKU close contacts
+of reported cases so that those contacts can stay away from campus. The Task Force also needs to know which
+venues on campus were visited by an infected member in the 2 days ahead of diagnosis so that cleaning and
+disinfection can be performed.
+
+1.2 Vision Statement
+For staff involved in managing COVID spreading in HKU who needs to identify HKU close contacts of reported cases so that those contacts can stay away from campus.
+StudySafe Core provides a RESTful API for maintaining records of the times at which members of HKU enter and exit enclosed public venues on campus.
+StudySafe Trace will display info related to close contacts of a given infected member of HKU and a date, consuming the StudySafe Core API.
+
+
+2.1 Major Features
+[For each feature, indicate whether it is part of StudySafe Core or StudySafe Trace]
+StudySafe Core:
+- Support attendance monitoring
+- Maintain Venue and HKU Member records
+StudySafe Trace:
+by providing HKU ID of an infected member of HKU and date, StudySafe Core endpoint will be called and can show
+- a list of Venue Codes of venues visited by the member while infectious, sorted alphabetically
+- a list of names and HKU IDs of those members identified as close contacts, sorted in increasing order of HKU ID
+
+2.2 Limitations and Exclusions
+
+3.1 Release Plan
+[Should cover both sprints and indicate what you plan to complete in each of those sprints]
+Sprint 1:
+Sprint 2:
