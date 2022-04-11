@@ -1,1 +1,1 @@
-# COMP3297-GP8
+# COMP3297-Group P
