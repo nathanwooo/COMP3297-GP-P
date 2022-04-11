@@ -9,6 +9,7 @@ disinfection can be performed.
 1.2 Vision Statement
 For staff involved in managing COVID spreading in HKU who needs to identify HKU close contacts of reported cases so that those contacts can stay away from campus.
 StudySafe Core provides a RESTful API for maintaining records of the times at which members of HKU enter and exit enclosed public venues on campus.
+StudySafe Trace will display info related to close contacts of a given infected member of HKU and a date, consuming the StudySafe Core API.
 
 
 2.1 Major Features
