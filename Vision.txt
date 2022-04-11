@@ -1,6 +1,7 @@
 1.1 Business Opportunity (Extracted from Overview Document)
 [Assume the Background has already been established in the Overview]
-HKU wishes to return to F2F teaching soon and wishes to do so safely. To minimize the chance of the SARSCoV-2 virus spreading on campus, HKU’s COVID Task Force must be able to identify HKU close contacts
+HKU wishes to return to F2F teaching soon and wishes to do so safely. 
+To minimize the chance of the SARSCoV-2 virus spreading on campus, HKU’s COVID Task Force must be able to identify HKU close contacts
 of reported cases so that those contacts can stay away from campus. The Task Force also needs to know which
 venues on campus were visited by an infected member in the 2 days ahead of diagnosis so that cleaning and
 disinfection can be performed.
