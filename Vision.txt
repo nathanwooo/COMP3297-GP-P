@@ -9,8 +9,8 @@ disinfection can be performed.
 1.2 Vision Statement
 For staff involved in managing COVID spreading in HKU who needs to identify HKU close contacts of reported cases so that those contacts can stay away from campus.
 The StudySafe Core is a service that provides a RESTful API for maintaining records of the times at which HKU members enter and exit enclosed public venues on campus.
-The StudySafe Trace is a webapge that will display info related to close contacts of a given infected member of HKU and a date, consuming the StudySafe Core API.
-Unlike the HKU mobile app Attendance@HKU that only supports enrolled attendees, StudySafe records both enrolled and non-enrolled attendees that goes to a venue or an event. Moreover, StudySafe also supports automatic checkout. These features can provide easement for users, and give a more accurate records regarding the attendance of the venue.
+The StudySafe Trace is a webpage that will display info related to close contacts of a given infected member of HKU and a date, consuming the StudySafe Core API.
+Unlike the HKU mobile app Attendance@HKU that only supports enrolled attendees, StudySafe records both enrolled and non-enrolled attendees that goes to a venue or an event. Moreover, StudySafe supports automatic checkout. These features can provide easement for users, and give a more accurate attendance records of the users.
 
 
 2.1 Major Features
