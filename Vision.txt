@@ -1,0 +1,12 @@
+1.1 Business Opportunity
+[Assume the Background has already been established in the Overview]
+
+1.2 Vision Statement
+
+2.1 Major Features
+[For each feature, indicate whether it is part of StudySafe Core or StudySafe Trace]
+
+2.2 Limitations and Exclusions
+
+3.1 Release Plan
+[Should cover both sprints and indicate what you plan to complete in each of those sprints]
