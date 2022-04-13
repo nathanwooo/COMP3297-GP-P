@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from coreapi.models import Venue, HkuMember, Visit
 # Create your views here.
 
-def ListHkuMember(request):
+def HkuMembers(request):
     display=""
     allhkumember = HkuMember.objects.all()
     for hkumember in allhkumember:
@@ -20,22 +20,4 @@ def CreateHkuMember(hku_id,name):
         display += str(hkumember)+"<br>"
     return HttpResponse(display)
 
-#not done yet for the following functions
-def ViewHkuMember(request):
-    display=""
-    allhkumember = HkuMember.objects.all()
-    for hkumember in allhkumember:
-        display += str(hkumember)+"<br>"
-    return HttpResponse(display)
-def ModifyHkuMember(request):
-    display=""
-    allhkumember = HkuMember.objects.all()
-    for hkumember in allhkumember:
-        display += str(hkumember)+"<br>"
-    return HttpResponse(display)
-def DeleteHkuMember(request):
-    display=""
-    allhkumember = HkuMember.objects.all()
-    for hkumember in allhkumember:
-        display += str(hkumember)+"<br>"
-    return HttpResponse(display)
+
