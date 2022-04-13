@@ -14,17 +14,19 @@ from rest_framework import generics,viewsets
     
     
 #     return Response(hkumember_serializer.data)
-# def CreateHkuMember(hku_id,name):
-#     p = HkuMember.objects.create(hku_id=hku_id, name=name)
-    
-#     display=""
-#     allhkumember = HkuMember.objects.all()
-#     for hkumember in allhkumember:
-#         display += str(hkumember)+"<br>"
-#     return HttpResponse(display)
-class HkuMembers2(generics.ListAPIView):
-    queryset = HkuMember.objects.all()
-    serializer_class = HkuMemberSerializer
+
+# class HkuMembers2(generics.ListAPIView):
+#     queryset = HkuMember.objects.all()
+#     serializer_class = HkuMemberSerializer
 class HkuMembers(viewsets.ModelViewSet):
+    
     queryset = HkuMember.objects.all()
     serializer_class = HkuMemberSerializer
+class Venues(viewsets.ModelViewSet):
+    
+    queryset = Venue.objects.all()
+    serializer_class = VenueSerializer
+class Visits(viewsets.ModelViewSet):
+    
+    queryset = Visit.objects.all()
+    serializer_class = VisitSerializer
