@@ -1,0 +1,504 @@
+openapi: 3.0.2
+info:
+  title: 'StudySafe Core'
+  version: '1.0'
+  description: "This is the API for the StudySafe Core. You can manage HkuMember, Venue and Visit here."
+paths:
+  /coreapi/hku-members/:
+    get:
+      operationId: listHkuMembers
+      summary: 'List all HKU members in catalog'
+      description: 'Show all fields for each HKU member'
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HkuMember'
+          description: ''
+      tags:
+      - coreapi
+    post:
+      operationId: createHkuMember
+      summary: 'Create HKU member'
+      description: 'Create HKU member by providing JSON with corresponding key and value pair'
+      parameters: []
+        
+        
+      requestBody:
+        required: True
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HkuMember'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/HkuMember'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/HkuMember'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HkuMember'
+          description: ''
+      tags:
+      - coreapi
+  /coreapi/hku-members/{hku_id}/:
+    get:
+      operationId: retrieveHkuMember
+      summary: 'View a HKU member in catalog'
+      description: 'View a particular HKU member by providing a hku_id'
+      parameters:
+      - name: hku_id
+        in: path
+        required: true
+        description: A unique value identifying this hku member.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HkuMember'
+          description: ''
+      tags:
+      - coreapi
+    put:
+      operationId: updateHkuMember
+      summary: 'Modify HKU member'
+      description: 'Modify a HKU member by providing hku_id and JSON'
+      parameters:
+      - name: hku_id
+        in: path
+        required: true
+        description: A unique value identifying this hku member.
+        schema:
+          type: string
+      requestBody:
+        required: True
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HkuMember'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/HkuMember'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/HkuMember'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HkuMember'
+          description: ''
+      tags:
+      - coreapi
+    patch:
+      operationId: partialUpdateHkuMember
+      summary: 'Modify HKU member'
+      description: 'Modify a HKU member by providing hku_id and JSON'
+      parameters:
+      - name: hku_id
+        in: path
+        required: true
+        description: A unique value identifying this hku member.
+        schema:
+          type: string
+      requestBody:
+        required: True
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HkuMember'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/HkuMember'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/HkuMember'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HkuMember'
+          description: ''
+      tags:
+      - coreapi
+    delete:
+      operationId: destroyHkuMember
+      summary: 'Delete HKU member'
+      description: 'Delete a HKU member by providing hku_id'
+      parameters:
+      - name: hku_id
+        in: path
+        required: true
+        description: A unique value identifying this hku member.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - coreapi
+  /coreapi/venues/:
+    get:
+      operationId: listVenues
+      summary: 'List all venues in catalog'
+      description: 'Show all fields for each venues'
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Venue'
+          description: ''
+      tags:
+      - coreapi
+    post:
+      operationId: createVenue
+      summary: 'Create venue'
+      description: 'Create venue by providing JSON with corresponding key and value pair'
+      parameters: []
+      requestBody:
+        required: True
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Venue'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Venue'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Venue'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Venue'
+          description: ''
+      tags:
+      - coreapi
+  /coreapi/venues/{venuecode}/:
+    get:
+      operationId: retrieveVenue
+      summary: 'View a venue in catalog'
+      description: 'View a particular venue by providing a venuecode'
+      parameters:
+      - name: venuecode
+        in: path
+        required: true
+        description: A unique value identifying this venue.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Venue'
+          description: ''
+      tags:
+      - coreapi
+    put:
+      operationId: updateVenue
+      summary: 'Modify venue'
+      description: 'Modify a HKU member by providing venuecode and JSON'
+      parameters:
+      - name: venuecode
+        in: path
+        required: true
+        description: A unique value identifying this venue.
+        schema:
+          type: string
+      requestBody:
+        required: True
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Venue'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Venue'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Venue'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Venue'
+          description: ''
+      tags:
+      - coreapi
+    patch:
+      operationId: partialUpdateVenue
+      summary: 'Modify venue'
+      description: 'Modify a HKU member by providing venuecode and JSON'
+      parameters:
+      - name: venuecode
+        in: path
+        required: true
+        description: A unique value identifying this venue.
+        schema:
+          type: string
+      requestBody:
+        required: True
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Venue'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Venue'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Venue'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Venue'
+          description: ''
+      tags:
+      - coreapi
+    delete:
+      operationId: destroyVenue
+      summary: 'Delete venue'
+      description: 'Delete a venue by providing venuecode'
+      parameters:
+      - name: venuecode
+        in: path
+        required: true
+        description: A unique value identifying this venue.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - coreapi
+  /coreapi/visits/:
+    get:
+      operationId: listVisits
+      summary: 'List all visits in catalog'
+      description: 'Show all fields for each visit'
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Visit'
+          description: ''
+      tags:
+      - coreapi
+    post:
+      operationId: createVisit
+      summary: 'Create visit'
+      description: 'Create visit by providing JSON with corresponding key and value pair'
+      parameters: []
+      requestBody:
+        required: True
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Visit'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Visit'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Visit'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Visit'
+          description: ''
+      tags:
+      - coreapi
+  /coreapi/visits/{id}/:
+    get:
+      operationId: retrieveVisit
+      summary: 'View a visit in catalog'
+      description: 'View a particular visit by providing an id'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this visit.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Visit'
+          description: ''
+      tags:
+      - coreapi
+    put:
+      operationId: updateVisit
+      summary: 'Modify visit'
+      description: 'Modify a visit by providing id and JSON'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this visit.
+        schema:
+          type: string
+      requestBody:
+        required: True
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Visit'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Visit'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Visit'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Visit'
+          description: ''
+      tags:
+      - coreapi
+    patch:
+      operationId: partialUpdateVisit
+      summary: 'Modify visit'
+      description: 'Modify a visit by providing id and JSON'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this visit.
+        schema:
+          type: string
+      requestBody:
+        required: True
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Visit'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Visit'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Visit'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Visit'
+          description: ''
+      tags:
+      - coreapi
+    delete:
+      operationId: destroyVisit
+      summary: 'Delete visit'
+      description: 'Delete a visit by providing id'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this visit.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - coreapi
+components:
+  schemas:
+    HkuMember:
+      type: object
+      properties:
+        hku_id:
+          type: string
+          maxLength: 10
+        name:
+          type: string
+          maxLength: 150
+        venues:
+          type: array
+          items:
+            type: string
+          readOnly: true
+      required:
+      - hku_id
+      - name
+    Venue:
+      type: object
+      properties:
+        venuecode:
+          type: string
+          maxLength: 20
+        location:
+          type: string
+          maxLength: 150
+        type:
+          enum:
+          - LT
+          - CR
+          - TR
+          type: string
+        capacity:
+          type: integer
+      required:
+      - venuecode
+      - location
+      - type
+      - capacity
+    Visit:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        time:
+          type: string
+          format: date-time
+        event:
+          enum:
+          - I
+          - O
+          type: string
+        member:
+          type: string
+        venue:
+          type: string
+      required:
+      - time
+      - event
+      - member
+      - venue
