@@ -10,7 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+from email.policy import default
 from pathlib import Path
+
+from environs import Env
+env = Env()
+env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-d6))ie!epd+qtkzc!s**r(ieq2z&)2exuih9w@fxno(3yzj)yf'
+SECRET_KEY = env.str("QDD_SECRET_KEY")
+#SECRET_KEY = "django-insecure-d6))ie!epd+qtkzc!s**r(ieq2z&)2exuih9w@fxno(3yzj)yf"
+DEBUG = env.bool("QDD_DEBUG",default=False)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
