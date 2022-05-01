@@ -10,8 +10,8 @@ router.register(r'visits',Visits,'visit')
 urlpatterns = [
     path("",include(router.urls)),
     path("view_base",views.view_base),
-    path("view_contacts",views.view_contacts),
-    path("view_venues",views.view_venues),
+    path("contacts",views.view_contacts),
+    path("venues",views.view_venues),
     #path('hku-members2',HkuMembers2.as_view(),name="HkuMembers2")
    
 ]
