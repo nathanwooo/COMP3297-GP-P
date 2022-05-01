@@ -13,3 +13,5 @@ class VisitSerializer(serializers.ModelSerializer):
     class Meta:
         model = Visit
         fields = '__all__'
+class VisitedVenuesSerializer(serializers.Serializer):
+    venue = serializers.CharField()

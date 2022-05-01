@@ -9,6 +9,7 @@ djangorestframework = "*"
 tzdata = "*"
 gunicorn = "*"
 environs = {extras = ["django"], version = "*"}
+"backports.zoneinfo" = "*"
 
 [dev-packages]
 
