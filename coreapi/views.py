@@ -94,21 +94,20 @@ def get_close_contacts(infectous_visit, uid, close_contacts_uid_set):
     for visit in close_contact_visits:
         # print(start_time_dict)
         member_uid = visit.member
+        current_time = visit.time
         if visit.event == IN_EVENT:
             # if visit.member not in start_time_dict:
-            start_time_dict[member_uid] = max(earliest_start, visit.time)
-            # start_time_dict[member_uid] = VisitRecord(visit.time, member_uid)
+            if current_time < infectous_visit.end:
+                start_time_dict[member_uid] = max(earliest_start, current_time)
+            # start_time_dict[member_uid] = VisitRecord(current_time, member_uid)
         elif visit.event == OUT_EVENT:
             if visit.member not in start_time_dict:
-                # should be not possible
-                # if is_more_than_30_mins(infectous_visit.start, visit.time):
+                # if is_more_than_30_mins(infectous_visit.start, current_time):
                 #     close_contacts_uid_set.add(visit.member)
                 pass
             else:
-                end_time = visit.time
-                if end_time <= earliest_start:
-                    pass
-                else:
+                end_time = current_time
+                if end_time > earliest_start:
                     start_visit_time = start_time_dict[member_uid]
                     if is_more_than_30_mins(start_visit_time, end_time):
                         close_contacts_uid_set.add(visit.member)
@@ -117,9 +116,9 @@ def get_close_contacts(infectous_visit, uid, close_contacts_uid_set):
 
     # for visit in close_contact_visits:
     #     if visit.event == IN_EVENT:
-    #         previous_start = visit.time
+    #         previous_start = current_time
     #     elif visit.event == OUT_EVENT:
-    #         if is_more_than_30_mins(previous_start, visit.time):
+    #         if is_more_than_30_mins(previous_start, current_time):
     #             close_contacts_uid_set.add(visit.member)
     print(close_contacts_uid_set)
     return close_contacts_uid_set
