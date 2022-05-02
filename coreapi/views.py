@@ -39,7 +39,6 @@ class Visits(viewsets.ModelViewSet):
 def get_infectous_hk_time(diagnosis_date):
     diagnosis_date = diagnosis_date.replace(tzinfo=timezone('Asia/Hong_Kong'))
     # print(timezone('Asia/Hong_Kong'))
-    # print(uid)
     print(diagnosis_date, type(diagnosis_date))
     infectous_date = diagnosis_date - timedelta(days=2)
     print(infectous_date, type(infectous_date))
@@ -79,7 +78,7 @@ class InfectousVisit():
     def __str__(self):
         return f"visited to {self.venue_code} from {self.start} to {self.end}"
 
-def is_more_than_30_mins(start, end):
+def is_gte_30_mins(start, end):
     print(start, '-', end)
     return (end - start).seconds >= THIRTY_MIN
 
@@ -93,35 +92,22 @@ def get_close_contacts(infectous_visit, uid, close_contacts_uid_set):
     latest_end = infectous_visit.end
 
     for visit in close_contact_visits:
-        # print(start_time_dict)
         member_uid = visit.member
         current_time = visit.time
         if visit.event == IN_EVENT:
-            # if visit.member not in start_time_dict:
             if current_time < latest_end:
                 start_time_dict[member_uid] = max(earliest_start, current_time)
-            # start_time_dict[member_uid] = VisitRecord(current_time, member_uid)
         elif visit.event == OUT_EVENT:
-            if visit.member not in start_time_dict:
-                # if is_more_than_30_mins(infectous_visit.start, current_time):
-                #     close_contacts_uid_set.add(visit.member)
+            if member_uid not in start_time_dict:
                 pass
             else:
                 end_time = current_time
                 if end_time > earliest_start:
                     start_visit_time = start_time_dict[member_uid]
-                    if is_more_than_30_mins(start_visit_time, min(end_time, latest_end)):
-                        close_contacts_uid_set.add(visit.member)
+                    if is_gte_30_mins(start_visit_time, min(end_time, latest_end)):
+                        close_contacts_uid_set.add(member_uid)
                 del start_time_dict[member_uid]
                 # assume the records are correct
-                # del start_time_dict[member_uid]
-
-    # for visit in close_contact_visits:
-    #     if visit.event == IN_EVENT:
-    #         previous_start = current_time
-    #     elif visit.event == OUT_EVENT:
-    #         if is_more_than_30_mins(previous_start, current_time):
-    #             close_contacts_uid_set.add(visit.member)
     print(close_contacts_uid_set)
     return close_contacts_uid_set
 
@@ -142,13 +128,8 @@ class CloseContactsList(generics.ListAPIView):
         visits = find_visited_venues(uid, infectous_date, diagnosis_date, 'time')
         print_list(visits)
         print("==")
+
         previous_start = infectous_date
-                # previous_start = infectous_date + timedelta(days=1, hours=5)
-                # previous_end = None
-                # print(previous_start)
-                # candidates = visits.exclude(Q(Q(event=OUT_EVENT) & Q(time__lte = previous_start)))
-                # print_list(candidates)
-                # print(candidates)
         infectous_visit_list = []
         close_contacts_uid_set = set()
         for visit in visits:
@@ -157,23 +138,19 @@ class CloseContactsList(generics.ListAPIView):
                 previous_start = visit.time
             elif visit.event == OUT_EVENT:
                 current_end = visit.time
-                if is_more_than_30_mins(previous_start, current_end):
+                if is_gte_30_mins(previous_start, current_end):
                     infectous_visit = InfectousVisit(previous_start, current_end, visit.venue)
                     get_close_contacts(infectous_visit, uid, close_contacts_uid_set)
                     infectous_visit_list.append(infectous_visit)
                 # previous_end = visit.time
             print(visit.time)
+            
         print(infectous_visit_list)
         for infectous_visit in infectous_visit_list:
             print(infectous_visit)
-        # return visits
+
         print(close_contacts_uid_set)
         for member in close_contacts_uid_set:
             print(member.name, member.hku_id)
 
         return sorted(close_contacts_uid_set, key=lambda x: x.hku_id)
-
-
-
-
-
