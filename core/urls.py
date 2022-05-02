@@ -18,5 +18,7 @@ from django.urls import include,path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('coreapi/',include("coreapi.urls"))
+    path('coreapi/',include("coreapi.urls")),
+    path("trace/",include("studysafe_trace.urls"))
+    
 ]

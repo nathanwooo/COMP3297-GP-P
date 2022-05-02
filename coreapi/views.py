@@ -173,12 +173,7 @@ class CloseContactsList(generics.ListAPIView):
 
         return sorted(close_contacts_uid_set, key=lambda x: x.hku_id)
 
-def view_base(request):
-    return render(request,'base.html',context=context)
-def view_contacts(request):
-    return render(request,'contacts.html',context=context)
-def view_venues(request):
-    return render(request,'venues.html',context=context)
+
 
 
 

@@ -11,9 +11,7 @@ urlpatterns = [
     path("",include(router.urls)),
     path('visited-venues', VisitedVenuesList.as_view(), name='visited-venues'),
     path('close-contacts', CloseContactsList.as_view(), name='close-contacts'),
-    path("view_base",views.view_base),
-    path("contacts/",views.view_contacts),
-    path("venues",views.view_venues),
+
     #path('hku-members2',HkuMembers2.as_view(),name="HkuMembers2")
    
 ]

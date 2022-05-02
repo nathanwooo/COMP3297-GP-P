@@ -12,6 +12,7 @@ environs = {extras = ["django"], version = "*"}
 "backports.zoneinfo" = "*"
 whitenoise = "*"
 psycopg2-binary = "*"
+requests = "*"
 
 [dev-packages]
 
