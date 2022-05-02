@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from coreapi.models import Venue, HkuMember, Visit
 from .serializers import HkuMemberSerializer,VenueSerializer,VisitSerializer, VisitedVenuesSerializer, CloseContactsSerializer
 from rest_framework import generics, viewsets
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 from pytz import timezone
 # Create your views here.
 #@api_view(['GET',])
