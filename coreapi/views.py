@@ -45,8 +45,8 @@ def get_infectous_hk_time(diagnosis_date):
     print(infectous_date, type(infectous_date))
     return infectous_date
 
-def find_visited_venues(uid, infectous_date, order):
-    venues = Visit.objects.filter(member=uid, time__gte=infectous_date).order_by(order)
+def find_visited_venues(uid, infectous_date, diagnosis_date, order):
+    venues = Visit.objects.filter(Q(Q(member=uid) & Q(time__gte=infectous_date) & Q(time__lt=diagnosis_date+timedelta(days=1)))).order_by(order)
     print(venues)
     return venues
 
@@ -61,7 +61,7 @@ class VisitedVenuesList(generics.ListAPIView):
         print(diagnosis_date, type(diagnosis_date))
         infectous_date = get_infectous_hk_time(diagnosis_date)
 
-        visits = find_visited_venues(uid, infectous_date, 'venue')
+        visits = find_visited_venues(uid, infectous_date, diagnosis_date, 'venue')
         return visits.values('venue').distinct()
 
 
@@ -139,7 +139,7 @@ class CloseContactsList(generics.ListAPIView):
         infectous_date = get_infectous_hk_time(diagnosis_date)
 
         print(infectous_date)
-        visits = find_visited_venues(uid, infectous_date, 'time')
+        visits = find_visited_venues(uid, infectous_date, diagnosis_date, 'time')
         print_list(visits)
         print("==")
         previous_start = infectous_date
