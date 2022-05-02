@@ -177,7 +177,7 @@ class CloseContactsList(generics.ListAPIView):
         for member in close_contacts_uid_set:
             print(member.name, member.hku_id)
 
-        return close_contacts_uid_set
+        return sorted(close_contacts_uid_set, key=lambda x: x.hku_id)
 
 def view_base(request):
     return render(request,'base.html',context=context)
