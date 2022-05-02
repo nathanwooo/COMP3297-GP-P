@@ -91,20 +91,20 @@ WSGI_APPLICATION = 'core.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'studysafe',
-        'USER': 'adminse',
-        'PASSWORD': 'COMP3297',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
-#change back later!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # DATABASES = {
-#     'default': env.dj_db_url('DATABASE_URL')
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'studysafe',
+#         'USER': 'adminse',
+#         'PASSWORD': 'COMP3297',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
 # }
+#change back later!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+DATABASES = {
+    'default': env.dj_db_url('DATABASE_URL')
+}
 
 
 # Password validation

@@ -10,7 +10,7 @@ def view_contacts(request):
     contacts=[]
     subject = request.GET.get("uid")
     date = request.GET.get("diagnosis-date")
-    results = requests.get(f"http://127.0.0.1:8000/coreapi/close-contacts?uid={subject}&diagnosis-date={date}").json()
+    results = requests.get(f"https://calm-hollows-40078.herokuapp.com/coreapi/close-contacts?uid={subject}&diagnosis-date={date}").json()
     for result in results:
         contacts.append("Name: "+result["name"]+", UID: "+result["hku_id"])
     context={"subject":subject,"date":date,"contacts":contacts}
@@ -22,7 +22,7 @@ def view_venues(request):
     venues=[]
     subject = request.GET.get("uid")
     date = request.GET.get("diagnosis-date")
-    results = requests.get(f"http://127.0.0.1:8000/coreapi/visited-venues?uid={subject}&diagnosis-date={date}").json()
+    results = requests.get(f"https://calm-hollows-40078.herokuapp.com/coreapi/visited-venues?uid={subject}&diagnosis-date={date}").json()
     for result in results:
         venues.append(result["venue"])
     context={"subject":subject,"date":date,"venues":venues}
