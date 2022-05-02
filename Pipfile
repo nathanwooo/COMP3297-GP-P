@@ -10,7 +10,6 @@ tzdata = "*"
 gunicorn = "*"
 environs = {extras = ["django"], version = "*"}
 "backports.zoneinfo" = "*"
-datetimerange = "*"
 
 [dev-packages]
 

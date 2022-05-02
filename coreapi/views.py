@@ -9,7 +9,6 @@ from .serializers import HkuMemberSerializer,VenueSerializer,VisitSerializer, Vi
 from rest_framework import generics, viewsets
 from datetime import datetime, timedelta, timezone
 from pytz import timezone
-from datetimerange import DateTimeRange
 # Create your views here.
 #@api_view(['GET',])
 # def HkuMembers(request):
@@ -90,9 +89,8 @@ class InfectousVisit():
 #         return f"Member {self.uid} Visited to infectous location from {self.start} to {self.end}"
 
 def is_more_than_30_mins(start, end):
-    time_range = DateTimeRange(start, end)
-    print(time_range)
-    return time_range.get_timedelta_second() >= THIRTY_MIN
+    print(start, '-', end)
+    return (end - start).seconds >= THIRTY_MIN
 
 def get_close_contacts(infectous_visit, uid, close_contacts_uid_set):
     close_contact_visits = Visit.objects.filter(venue = infectous_visit.venue_code).exclude( Q(member=uid) | 
