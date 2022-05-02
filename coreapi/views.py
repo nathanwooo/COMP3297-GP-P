@@ -37,7 +37,7 @@ class Visits(viewsets.ModelViewSet):
     queryset = Visit.objects.all()
     serializer_class = VisitSerializer
 
-def change2hk_time(diagnosis_date):
+def get_infectous_hk_time(diagnosis_date):
     diagnosis_date = diagnosis_date.replace(tzinfo=timezone('Asia/Hong_Kong'))
     # print(timezone('Asia/Hong_Kong'))
     # print(uid)
@@ -60,7 +60,7 @@ class VisitedVenuesList(generics.ListAPIView):
         uid = parameters.get('uid')
         diagnosis_date = datetime.strptime(parameters.get('diagnosis-date'), '%Y-%m-%d')  # may need add error handling
         print(diagnosis_date, type(diagnosis_date))
-        infectous_date = change2hk_time(diagnosis_date)
+        infectous_date = get_infectous_hk_time(diagnosis_date)
 
         visits = find_visited_venues(uid, infectous_date, 'venue')
         return visits.values('venue').distinct()
@@ -142,7 +142,7 @@ class CloseContactsList(generics.ListAPIView):
         uid = parameters.get('uid')
         diagnosis_date = datetime.strptime(parameters.get('diagnosis-date'), '%Y-%m-%d')  # may need add error handling
         print(diagnosis_date, type(diagnosis_date))
-        infectous_date = change2hk_time(diagnosis_date)
+        infectous_date = get_infectous_hk_time(diagnosis_date)
 
         print(infectous_date)
         visits = find_visited_venues(uid, infectous_date, 'time')
