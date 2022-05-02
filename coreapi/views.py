@@ -79,44 +79,39 @@ class InfectousVisit():
     def __str__(self):
         return f"visited to {self.venue_code} from {self.start} to {self.end}"
 
-# class VisitRecord():
-#     end = None
-#     def __init__(self, start, uid):
-#         self.start = start
-#         self.uid = uid
-    
-#     def __str__(self):
-#         return f"Member {self.uid} Visited to infectous location from {self.start} to {self.end}"
-
 def is_more_than_30_mins(start, end):
     print(start, '-', end)
     return (end - start).seconds >= THIRTY_MIN
 
 def get_close_contacts(infectous_visit, uid, close_contacts_uid_set):
-    close_contact_visits = Visit.objects.filter(venue = infectous_visit.venue_code).exclude( Q(member=uid) | 
-        (Q(Q(event=OUT_EVENT) & Q(time__lte = infectous_visit.start)) | Q(Q(event=IN_EVENT) & Q(time__gte = infectous_visit.end))) ).order_by('time')
+    close_contact_visits = Visit.objects.filter(venue = infectous_visit.venue_code).exclude(member=uid).order_by('time')
     print("Close Contacts")
     print(close_contact_visits)
 
     start_time_dict = dict()
-    # previous_start = infectous_visit.start
+    earliest_start = infectous_visit.start
 
     for visit in close_contact_visits:
         # print(start_time_dict)
         member_uid = visit.member
         if visit.event == IN_EVENT:
             # if visit.member not in start_time_dict:
-            start_time_dict[member_uid] = visit.time
+            start_time_dict[member_uid] = max(earliest_start, visit.time)
             # start_time_dict[member_uid] = VisitRecord(visit.time, member_uid)
         elif visit.event == OUT_EVENT:
             if visit.member not in start_time_dict:
-                # assume records are valid and no record loss, the in event is before infectous_vist's start time
-                if is_more_than_30_mins(infectous_visit.start, visit.time):
-                    close_contacts_uid_set.add(visit.member)
+                # should be not possible
+                # if is_more_than_30_mins(infectous_visit.start, visit.time):
+                #     close_contacts_uid_set.add(visit.member)
+                pass
             else:
-                start_visit_time = start_time_dict[member_uid]
-                if is_more_than_30_mins(start_visit_time, visit.time):
-                    close_contacts_uid_set.add(visit.member)
+                end_time = visit.time
+                if end_time <= earliest_start:
+                    pass
+                else:
+                    start_visit_time = start_time_dict[member_uid]
+                    if is_more_than_30_mins(start_visit_time, end_time):
+                        close_contacts_uid_set.add(visit.member)
                 # assume the records are correct
                 # del start_time_dict[member_uid]
 
