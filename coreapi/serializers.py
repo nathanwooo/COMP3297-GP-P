@@ -15,3 +15,7 @@ class VisitSerializer(serializers.ModelSerializer):
         fields = '__all__'
 class VisitedVenuesSerializer(serializers.Serializer):
     venue = serializers.CharField()
+
+class VisitedVenuesSerializer(serializers.Serializer):
+    name = serializers.CharField()
+    hku_id = serializers.CharField()
