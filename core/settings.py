@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env.str("QDD_SECRET_KEY")
+#SECRET_KEY = env.str("QDD_SECRET_KEY")
 #change back secret key when deploy(use previous line instead of next line!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!)
-# SECRET_KEY = "django-insecure-d6))ie!epd+qtkzc!s**r(ieq2z&)2exuih9w@fxno(3yzj)yf"
+SECRET_KEY = "django-insecure-d6))ie!epd+qtkzc!s**r(ieq2z&)2exuih9w@fxno(3yzj)yf"
 DEBUG = env.bool("QDD_DEBUG",default=False)
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -91,20 +91,20 @@ WSGI_APPLICATION = 'core.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'studysafe',
-#         'USER': 'adminse',
-#         'PASSWORD': 'COMP3297',
-#         'HOST': 'localhost',
-#         'PORT': '',
-#     }
-# }
-#change back later!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 DATABASES = {
-    'default': env.dj_db_url('DATABASE_URL')
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'studysafe',
+        'USER': 'adminse',
+        'PASSWORD': 'COMP3297',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
 }
+#change back later!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# DATABASES = {
+#     'default': env.dj_db_url('DATABASE_URL')
+# }
 
 
 # Password validation
