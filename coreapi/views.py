@@ -111,7 +111,7 @@ def get_close_contacts(infectous_visit, uid, close_contacts_uid_set):
     print(start_time_dict)
     # for the members that haven't leave the venue
     for member in start_time_dict:
-        close_contacts_uid_set.add(member_uid)
+        close_contacts_uid_set.add(member)
 
     print(close_contacts_uid_set)
     return close_contacts_uid_set
