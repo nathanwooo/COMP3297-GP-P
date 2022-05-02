@@ -5,7 +5,7 @@ from django.db.models import Q
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from coreapi.models import Venue, HkuMember, Visit
-from .serializers import HkuMemberSerializer,VenueSerializer,VisitSerializer, VisitedVenuesSerializer
+from .serializers import HkuMemberSerializer,VenueSerializer,VisitSerializer, VisitedVenuesSerializer, CloseContactsSerializer
 from rest_framework import generics, viewsets
 from datetime import datetime, timedelta, timezone
 from pytz import timezone
@@ -134,7 +134,7 @@ def get_close_contacts(infectous_visit, uid, close_contacts_uid_set):
 IN_EVENT, OUT_EVENT = 'I', 'O'
 THIRTY_MIN = 30 * 60
 class CloseContactsList(generics.ListAPIView):
-    serializer_class = VisitedVenuesSerializer
+    serializer_class = CloseContactsSerializer
     queryset = None
 
     def get_queryset(self):

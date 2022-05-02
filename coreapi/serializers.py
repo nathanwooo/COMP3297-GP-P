@@ -16,6 +16,6 @@ class VisitSerializer(serializers.ModelSerializer):
 class VisitedVenuesSerializer(serializers.Serializer):
     venue = serializers.CharField()
 
-class VisitedVenuesSerializer(serializers.Serializer):
+class CloseContactsSerializer(serializers.Serializer):
     name = serializers.CharField()
     hku_id = serializers.CharField()
