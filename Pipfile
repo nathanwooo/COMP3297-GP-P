@@ -10,6 +10,8 @@ tzdata = "*"
 gunicorn = "*"
 environs = {extras = ["django"], version = "*"}
 "backports.zoneinfo" = "*"
+whitenoise = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 
