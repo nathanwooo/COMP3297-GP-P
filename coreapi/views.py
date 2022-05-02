@@ -90,6 +90,7 @@ def get_close_contacts(infectous_visit, uid, close_contacts_uid_set):
 
     start_time_dict = dict()
     earliest_start = infectous_visit.start
+    latest_end = infectous_visit.end
 
     for visit in close_contact_visits:
         # print(start_time_dict)
@@ -97,7 +98,7 @@ def get_close_contacts(infectous_visit, uid, close_contacts_uid_set):
         current_time = visit.time
         if visit.event == IN_EVENT:
             # if visit.member not in start_time_dict:
-            if current_time < infectous_visit.end:
+            if current_time < latest_end:
                 start_time_dict[member_uid] = max(earliest_start, current_time)
             # start_time_dict[member_uid] = VisitRecord(current_time, member_uid)
         elif visit.event == OUT_EVENT:
@@ -109,8 +110,9 @@ def get_close_contacts(infectous_visit, uid, close_contacts_uid_set):
                 end_time = current_time
                 if end_time > earliest_start:
                     start_visit_time = start_time_dict[member_uid]
-                    if is_more_than_30_mins(start_visit_time, end_time):
+                    if is_more_than_30_mins(start_visit_time, min(end_time, latest_end)):
                         close_contacts_uid_set.add(visit.member)
+                del start_time_dict[member_uid]
                 # assume the records are correct
                 # del start_time_dict[member_uid]
 
