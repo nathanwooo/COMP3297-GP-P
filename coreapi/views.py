@@ -45,7 +45,7 @@ def get_infectous_hk_time(diagnosis_date):
     return infectous_date
 
 def find_visited_venues(uid, infectous_date, diagnosis_date, order):
-    venues = Visit.objects.filter(Q(Q(member=uid) & Q(time__gte=infectous_date) & Q(time__lt=diagnosis_date+timedelta(days=1)))).order_by(order)
+    venues = Visit.objects.filter(Q(Q(member=uid) & Q(time__gte=infectous_date) & Q(time__lt=diagnosis_date.replace(tzinfo=timezone('Asia/Hong_Kong'))+timedelta(days=1)))).order_by(order)
     print(venues)
     return venues
 
